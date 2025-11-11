@@ -1,24 +1,72 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esse é o meu primeiro commit do Projeto de Jeofton. Aluno: marlon ian</title>
-    <p>teste marlon</p>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="<?= htmlspecialchars($baseUrl.'/style.css') ?>" />
+  <title>AutoUni - Aluguel de Veículos</title>
 </head>
 <body>
-    <h1>{Carros}</h1>
-    <p>Escolha sua marca</p>
-    <form action="index.php" method="get">
-        <button type="submit">Enviar</button>
-    </form>
-    <ul>
-        <li>honda</li>
-        <li>toyota</li>
-        <li>fiat</li>
-        <li>volvo</li>
-       
-    </ul>
-    <p>teste</p>
+  <div class="wrapper">
+    <header class="header">
+      <div class="logo">
+        <h1>AutoUni</h1>
+      </div>
+      <div class="nav-container">
+        <nav class="menu">
+          <ul>
+            <?php foreach ($menu as $item): ?>
+              <li>
+                <a href="<?= htmlspecialchars($baseUrl.'/'.$item['href']) ?>" <?= is_active($item['href']) ?>>
+                  <?= htmlspecialchars($item['label']) ?>
+                </a>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        </nav>
+        <div class="auth-links">
+          <?php foreach ($auth as $item): ?>
+            <a href="<?= htmlspecialchars($baseUrl.'/'.$item['href']) ?>">
+              <?= htmlspecialchars($item['label']) ?>
+            </a>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <h1><strong>VEÍCULOS DISPONÍVEIS PARA ALUGUEL</strong></h1>
+  <br><br>
+
+  <div class="card-container">
+    <?php foreach ($veiculos as $v): ?>
+      <div class="card">
+        <img src="<?= htmlspecialchars($baseUrl.'/'.$v['imagem']) ?>" alt="Imagem do veículo" />
+        <div class="info">
+          <h3><?= htmlspecialchars($v['titulo']) ?></h3>
+          <br />
+          <p><strong><?= htmlspecialchars($v['descricao']) ?></strong></p>
+          <br />
+          <a href="<?= htmlspecialchars($baseUrl.'/'.$v['href']) ?>" class="botao">Selecionar</a>
+        </div>
+      </div>
+      <br /><br />
+    <?php endforeach; ?>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <h2>Informações Adicionais</h2>
+      <p>
+        Agradecemos por visitar nossa plataforma e confiar em nossos serviços.
+        Se precisar de qualquer assistência, dúvidas ou suporte, nossa equipe está sempre pronta para ajudar.
+        Entre em contato pelo WhatsApp ou envie um e-mail para nós. Sua satisfação é a nossa prioridade!
+      </p>
+      <div class="footer-buttons">
+        <a href="https://mail.google.com/mail/u/0/?hl=pt-BR" class="btn">E-mail</a>
+        <a href="https://wa.me/seunumerodetelefone" class="btn">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
