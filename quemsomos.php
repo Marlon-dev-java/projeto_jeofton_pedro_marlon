@@ -1,18 +1,15 @@
 <?php
-// index.php — página principal com cabeçalho e rodapé
-
-echo '
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AUTO UNI</title>
+  <title>Quem Somos - AUTO UNI</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- === CABEÇALHO === -->
 <section class="hero">
   <h2>AUTO UNI</h2>
   <p>SITE SIMPLES E PRÁTICO PARA ALUGUEL DE VEÍCULOS</p>
@@ -30,22 +27,45 @@ echo '
   </div>
 </section>
 
-<!-- === CONTEÚDO PRINCIPAL (opcional) === -->
 <section class="login-section">
-  <div class="card">
-    <h2>Bem-vindo(a)!</h2>
-    <p style="color:#333;">Aqui você pode navegar entre as páginas, fazer login ou criar sua conta.</p>
+  <div class="card" style="max-width: 600px;">
+    <h2>Quem Somos</h2>
+    <p>
+      Somos a <strong>AUTO UNI</strong>, Uma loja focada em alugar veículos de forma prática, acessivel e segura.
+    </p>
+
+    <p>
+      Projeto Prático - PROGRAMAÇÃO WEB - P2-E 
+    </p>
+
+    <p>
+      Agradecimentos especiais ao Professor Jeofton Costa.
+    </p>
+
+    <p>
+    <br>  
+      <strong>Desenvolvedores do Projeto</strong>
+    <br>    
+    <br>  
+      Pedro Vieira Salvador Lopes
+    <br>
+      RGM: 43821545
+    <br>
+      Marlon Ian Ferreira Dantas
+    <br>
+      RGM: 43785115
+    <br>
+    </p>
   </div>
 </section>
 
-<!-- === RODAPÉ === -->
 <footer class="footer">
   <div class="footer-content">
     <h2>Informações Adicionais</h2>
     <p>
-      Agradecemos por visitar nossa plataforma e confiar em nossos serviços.<br>
-      Se precisar de qualquer assistência, dúvidas ou suporte, nossa equipe está sempre pronta para ajudar.<br>
-      Entre em contato pelo WhatsApp ou envie um e-mail para nós. Sua satisfação é a nossa prioridade!
+      Agradecemos por visitar nosso site.<br>
+      Se precisar ajuda em qualquer coisa, basta procurar a nossa equipe.<br>
+      Entre em contato pelo WhatsApp ou envie um e-mail para agilizar seu atendimento, acesse abaixo
     </p>
 
     <div class="footer-buttons">
@@ -53,11 +73,9 @@ echo '
       <a href="https://wa.me/seunumerodetelefone" class="btn">WhatsApp</a>
     </div>
 
-    <p class="footer-copy">© ' . date("Y") . ' AUTO UNI — Todos os direitos reservados.</p>
+    <p class="footer-copy">© <?php echo date("Y"); ?> AUTO UNI</p>
   </div>
 </footer>
 
 </body>
 </html>
-';
-?>
