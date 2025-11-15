@@ -13,7 +13,7 @@ body {
 
 .hero {
   text-align: center;
-  padding: 0px 0 30px 0;  /* <-- AQUI REDUZ O TOPO */
+  padding: 0px 0 30px 0; 
   background-color: #272727;
   color: #ffffff;
   margin-bottom: 30px;

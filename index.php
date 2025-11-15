@@ -1,5 +1,5 @@
 <?php
-// Se quiser usar sessão, banco etc, coloca aqui em cima
+
 ?>
 
 <!DOCTYPE html>
