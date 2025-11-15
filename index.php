@@ -1,7 +1,7 @@
 <?php
-// index.php — página principal com cabeçalho e rodapé
+// Se quiser usar sessão, banco etc, coloca aqui em cima
+?>
 
-echo '
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,41 +11,41 @@ echo '
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<!-- === CABEÇALHO === -->
 <section class="hero">
   <h2>AUTO UNI</h2>
   <p>SITE SIMPLES E PRÁTICO PARA ALUGUEL DE VEÍCULOS</p>
-
   <div class="nav-buttons">
     <div class="left-buttons">
       <a class="btn" href="index.php">Página Inicial</a>
       <a class="btn" href="quemsomos.php">Quem somos</a>
     </div>
-
     <div class="right-buttons">
       <a class="btn" href="painellogin.php">Login</a>
       <a class="btn" href="painelcriarconta.php">Cadastre-se</a>
     </div>
   </div>
 </section>
-
-<!-- === CONTEÚDO PRINCIPAL (opcional) === -->
-<section class="login-section">
-  <div class="card">
-    <h2>Bem-vindo(a)!</h2>
-    <p style="color:#333;">Aqui você pode navegar entre as páginas, fazer login ou criar sua conta.</p>
-  </div>
-</section>
-
-<!-- === RODAPÉ === -->
+<div class="catalogo">
+    <div class="car-card">
+        <img src="assets/polotrack.png" alt="Carro 1">
+        <h3>Polo Track</h3>
+        <p>Motor 1.0, Econômico, conforto e segurança!</p>
+        <a href="#" class="btn car-btn">Alugar</a>
+    </div>
+    <div class="car-card">
+        <img src="assets/cg160.png" alt="Carro 2">
+        <h3>Honda CG 160</h3>
+        <p>Desempenho, praticidade e agilidade!</p>
+        <a href="#" class="btn car-btn">Alugar</a>
+    </div>
+</div>
 <footer class="footer">
   <div class="footer-content">
     <h2>Informações Adicionais</h2>
     <p>
-      Agradecemos por visitar nossa plataforma e confiar em nossos serviços.<br>
-      Se precisar de qualquer assistência, dúvidas ou suporte, nossa equipe está sempre pronta para ajudar.<br>
-      Entre em contato pelo WhatsApp ou envie um e-mail para nós. Sua satisfação é a nossa prioridade!
+      Agradecemos por visitar nosso site.<br>
+      Se precisar ajuda em qualquer coisa, basta procurar a nossa equipe.<br>
+      Entre em contato pelo WhatsApp ou envie um e-mail para agilizar seu atendimento.
     </p>
 
     <div class="footer-buttons">
@@ -53,11 +53,9 @@ echo '
       <a href="https://wa.me/seunumerodetelefone" class="btn">WhatsApp</a>
     </div>
 
-    <p class="footer-copy">© ' . date("Y") . ' AUTO UNI — Todos os direitos reservados.</p>
+    <p class="footer-copy">© <?php echo date("Y"); ?> AUTO UNI</p>
   </div>
 </footer>
 
 </body>
 </html>
-';
-?>
