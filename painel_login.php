@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $senha = trim($_POST['password'] ?? '');
 
     if ($email !== '' && $senha !== '') {
-        $mensagem = 'Login realizado com sucesso! <br> Clique em <a href="index.php">Página Inicial</a> para continuar.';
+        $mensagem = 'Login realizado com sucesso! <br> Clique <a href="index.php">Aqui</a> para continuar.';
     } else {
         $mensagem = 'Preencha todos os campos.';
     }

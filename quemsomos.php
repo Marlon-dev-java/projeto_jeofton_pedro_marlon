@@ -21,8 +21,8 @@
     </div>
 
     <div class="right-buttons">
-      <a class="btn" href="painellogin.php">Login</a>
-      <a class="btn" href="painelcriarconta.php">Cadastre-se</a>
+      <a class="btn" href="painel_login.php">Login</a>
+      <a class="btn" href="painel_criar_conta.php">Cadastre-se</a>
     </div>
   </div>
 </section>
@@ -31,7 +31,7 @@
   <div class="card" style="max-width: 600px;">
     <h2>Quem Somos</h2>
     <p>
-      Somos a <strong>AUTO UNI</strong>, Uma loja focada em alugar veículos de forma prática, acessivel e segura.
+      Somos a <strong>AUTO UNI</strong>, NOSSA LOJA É FOCADA EM ALUGUEL DE VEÍCULOS PARA ESTUDANTES DA UNIPÊ!
     </p>
 
     <p>

@@ -28,15 +28,35 @@
 <div class="catalogo">
     <div class="car-card">
         <img src="assets/polotrack.png" alt="Carro 1">
-        <h3>CARROS</h3>
-        <p>MODELOS ECONÔMICOS, CONFORTÁVEIS E SEGUROS!</p>
-        <a href="carros.php" class="btn car-btn">VER MODELOS</a>
+        <h3>Volkswagen Polo Track 1.0</h3>
+        <p>ECONÔMICO, CONFORTÁVEL E SEGURO!</p>
+        <h3>R$ 102,83 - POR DIA</h3>
+        <br>
+        <a href="reserva.php" class="btn car-btn">Alugar</a>
+    </div>
+        <div class="car-card">
+        <img src="assets/onixlt.png" alt="Carro 2">
+        <h3>Chevrolet Ônix 1.0</h3>
+        <p>ECONÔMICO, COMPACTO E ESPAÇOSO!</p>
+        <h3>R$ 122,33 - POR DIA</h3>
+        <br>
+        <a href="reserva.php" class="btn car-btn">Alugar</a>
+    </div>
+        <div class="car-card">
+        <img src="assets/onixplus.png" alt="Carro 2">
+        <h3>Chevrolet Ônix 1.0</h3>
+        <p>ECONÔMICO, COMPACTO E ESPAÇOSO!</p>
+        <h3>R$ 158,90 - POR DIA</h3>
+        <br>
+        <a href="reserva.php" class="btn car-btn">Alugar</a>
     </div>
     <div class="car-card">
-        <img src="assets/cg160.png" alt="Carro 2">
-        <h3>MOTOS</h3>
-        <p>MODELOS ECONÔMICOS, COMPACTOS E ÁGEIS!</p>
-        <a href="motos.php" class="btn car-btn">VER MODELOS</a>
+        <img src="assets/hb20s.png" alt="Carro 2">
+        <h3>Hyundai HB20S</h3>
+        <p>ECONÔMICO, COMPACTO E ESPAÇOSO!</p>
+        <h3>R$ 145,55 - POR DIA</h3>
+        <br>
+        <a href="reserva.php" class="btn car-btn">Alugar</a>
     </div>
 </div>
 <footer class="footer">

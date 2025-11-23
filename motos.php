@@ -27,16 +27,28 @@
 </section>
 <div class="catalogo">
     <div class="car-card">
-        <img src="assets/polotrack.png" alt="Carro 1">
-        <h3>CARROS</h3>
-        <p>MODELOS ECONÔMICOS, CONFORTÁVEIS E SEGUROS!</p>
-        <a href="carros.php" class="btn car-btn">VER MODELOS</a>
-    </div>
-    <div class="car-card">
         <img src="assets/cg160.png" alt="Carro 2">
-        <h3>MOTOS</h3>
-        <p>MODELOS ECONÔMICOS, COMPACTOS E ÁGEIS!</p>
-        <a href="motos.php" class="btn car-btn">VER MODELOS</a>
+        <h3>Honda CG 160</h3>
+        <p>ECONÔMICA, COMPACTA E CONFORTÁVEL</p>
+        <a href="RESERVA.php" class="btn car-btn">Alugar</a>
+    </div>
+        <div class="car-card">
+        <img src="assets/xre300.png" alt="Carro 2">
+        <h3>Honda XRE 300</h3>
+        <p>ECONÔMICA, COMPACTA E CONFORTÁVEL</p>
+        <a href="RESERVA.php" class="btn car-btn">Alugar</a>
+    </div>
+        <div class="car-card">
+        <img src="assets/lander.png" alt="Carro 2">
+        <h3>Yamaha LANDER 250</h3>
+        <p>ECONÔMICA, COMPACTA E CONFORTÁVEL</p>
+        <a href="RESERVA.php" class="btn car-btn">Alugar</a>
+    </div>
+        <div class="car-card">
+        <img src="assets/gs.png" alt="Carro 2">
+        <h3>BMW GS 310</h3>
+        <p>ECONÔMICA, VELOZ E CONFORTÁVEL</p>
+        <a href="RESERVA.php" class="btn car-btn">Alugar</a>
     </div>
 </div>
 <footer class="footer">
