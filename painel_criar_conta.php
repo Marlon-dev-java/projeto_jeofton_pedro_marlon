@@ -2,7 +2,7 @@
 session_start();
 
 $titulo_site   = 'AUTO UNI';
-$subtitulo     = 'SITE SIMPLES E PRÁTICO PARA ALUGUEL DE VEÍCULOS';
+$subtitulo     = 'SITE DE ALUGUEL DE VEÍCULOS PARA ESTUDANTES DA UNIPÊ';
 $min_senha     = 6;
 
 $mensagem = '';

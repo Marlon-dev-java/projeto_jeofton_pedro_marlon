@@ -12,7 +12,7 @@
 
 <section class="hero">
   <h2>AUTO UNI</h2>
-  <p>SITE SIMPLES E PRÁTICO PARA ALUGUEL DE VEÍCULOS</p>
+  <p>SITE DE ALUGUEL DE VEÍCULOS PARA ESTUDANTES DA UNIPÊ</p>
 
   <div class="nav-buttons">
     <div class="left-buttons">
