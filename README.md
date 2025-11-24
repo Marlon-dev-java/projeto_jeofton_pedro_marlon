@@ -10,7 +10,7 @@ A plataforma permite que o usuário crie uma conta, faça login, visualize veíc
 Para visualizar o funcionamento completo do sistema (GitHub, banco de dados e a aplicação rodando), assista ao vídeo abaixo:
 
 🔗 Vídeo no YouTube:
-👉 https://youtu.be/_03GZtKB3x8?si=BoWpmlP_3sdeMdP-
+👉 https://youtu.be/UbGl77me-OU
 
 📌 (Demonstração do projeto AutoUni feita para apresentação acadêmica)
 
