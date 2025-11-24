@@ -3,41 +3,94 @@ session_start();
 include "conexao_banco_de_dados.php";
 
 $titulo_site   = 'AUTO UNI';
-$subtitulo     = 'RESERVA DE VEÍCULOS PARA ESTUDANTES DA UNIPÊ';
+$subtitulo     = 'ALUGUEL DE VEÍCULOS PARA ESTUDANTES UNIPÊ';
 
 $mensagem = '';
 $erros = [];
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+$id_veiculo = 0;
+if (isset($_POST['id_veiculo'])) {
+    $id_veiculo = (int) $_POST['id_veiculo'];
+} elseif (isset($_GET['id_veiculo'])) {
+    $id_veiculo = (int) $_GET['id_veiculo'];
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-  $nome_completo = trim($_POST['nome_completo'] ?? '');
-  $numero        = trim($_POST['numero']        ?? '');
-  $email         = trim($_POST['email']         ?? '');
+  $nome        = trim($_POST['nome']       ?? '');
+  $telefone    = trim($_POST['telefone']   ?? '');
+  $email       = trim($_POST['email']      ?? '');
+  $data_inicio = trim($_POST['data_inicio']?? '');
+  $data_fim    = trim($_POST['data_fim']   ?? '');
 
-  $cidade        = trim($_POST['cidade']        ?? '');
-  $estado        = trim($_POST['estado']        ?? '');
-  $bairro        = trim($_POST['bairro']        ?? '');
-  $cep           = trim($_POST['cep']           ?? '');
+  $id_usuario = $_SESSION['usuario_id'] ?? null;
 
-  // Validações
-  if ($nome_completo === '') { $erros[] = 'Informe seu nome completo.'; }
-  if ($numero === '')        { $erros[] = 'Informe seu número para contato.'; }
+  if ($nome === '')      { $erros[] = 'Informe seu nome.'; }
+  if ($telefone === '')  { $erros[] = 'Informe seu telefone.'; }
   if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $erros[] = 'Informe um e-mail válido.';
-  }
+    $erros[] = 'Informe um e-mail válido.'; }
+  if ($data_inicio === '') { $erros[] = 'Informe a data de início da reserva.'; }
+  if ($data_fim === '')    { $erros[] = 'Informe a data de término da reserva.'; }
+  if ($id_veiculo <= 0)    { $erros[] = 'Veículo não informado.'; }
 
-  if ($cidade === '')  { $erros[] = 'Informe sua cidade.'; }
-  if ($estado === '')  { $erros[] = 'Informe seu estado.'; }
-  if ($bairro === '')  { $erros[] = 'Informe seu bairro.'; }
-  if ($cep === '')     { $erros[] = 'Informe seu CEP.'; }
-
-  // Se não houver erros, redireciona para reservado.php
   if (empty($erros)) {
-    // Se quiser, pode guardar os dados em sessão para usar em reservado.php
-    // $_SESSION['reserva'] = $_POST;
 
-    header('Location: reservado.php');
-    exit;
+    $modeloVeiculo = null;
+    $sqlModelo = "SELECT modelo FROM veiculos WHERE id = ? LIMIT 1";
+    $stmtModelo = mysqli_prepare($conn, $sqlModelo);
+
+    if ($stmtModelo) {
+        mysqli_stmt_bind_param($stmtModelo, "i", $id_veiculo);
+        mysqli_stmt_execute($stmtModelo);
+        mysqli_stmt_bind_result($stmtModelo, $modeloVeiculo);
+        mysqli_stmt_fetch($stmtModelo);
+        mysqli_stmt_close($stmtModelo);
+    }
+
+    if ($modeloVeiculo === null) {
+        $modeloVeiculo = 'Veículo desconhecido';
+    }
+
+    $sql = "INSERT INTO reservas
+              (id_usuario, id_veiculo, modelo_veiculo, nome, telefone, email, data_inicio, data_fim, data_reserva)
+            VALUES
+              (?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+
+    $stmt = mysqli_prepare($conn, $sql);
+
+    if ($stmt) {
+      mysqli_stmt_bind_param(
+        $stmt,
+        "iissssss",
+        $id_usuario,
+        $id_veiculo,
+        $modeloVeiculo,
+        $nome,
+        $telefone,
+        $email,
+        $data_inicio,
+        $data_fim
+      );
+
+      if (mysqli_stmt_execute($stmt)) {
+
+        $_SESSION['reserva_nome']  = $nome;
+        $_SESSION['reserva_email'] = $email;
+
+        mysqli_stmt_close($stmt);
+        header('Location: reservado.php');
+        exit;
+
+      } else {
+        $erros[] = 'Erro ao salvar reserva no banco de dados: ' . mysqli_stmt_error($stmt);
+        mysqli_stmt_close($stmt);
+      }
+    } else {
+      $erros[] = 'Erro ao preparar consulta: ' . mysqli_error($conn);
+    }
   }
 }
 ?>
@@ -80,18 +133,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
     <?php endif; ?>
 
-    <form method="post" action="reserva.php">
+    <?php if (!empty($mensagem)): ?>
+      <div class="mensagem"><?= $mensagem ?></div>
+    <?php endif; ?>
+
+    <form method="post" action="reserva.php?id_veiculo=<?= (int)$id_veiculo ?>">
+
+      <input type="hidden" name="id_veiculo" value="<?= (int)$id_veiculo ?>">
 
       <div class="form-group">
-        <label class="required">Nome completo</label>
-        <input type="text" name="nome_completo"
-               value="<?= isset($nome_completo) ? htmlspecialchars($nome_completo) : '' ?>" required>
+        <label class="required">Nome</label>
+        <input type="text" name="nome"
+               value="<?= isset($nome) ? htmlspecialchars($nome) : '' ?>" required>
       </div>
 
       <div class="form-group">
-        <label class="required">Número para contato</label>
-        <input type="tel" name="numero" placeholder="(xx) xxxxx-xxxx"
-               value="<?= isset($numero) ? htmlspecialchars($numero) : '' ?>" required>
+        <label class="required">Telefone</label>
+        <input type="tel" name="telefone" placeholder="(xx) xxxxx-xxxx"
+               value="<?= isset($telefone) ? htmlspecialchars($telefone) : '' ?>" required>
       </div>
 
       <div class="form-group">
@@ -101,27 +160,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
 
       <div class="form-group">
-        <label class="required">Cidade</label>
-        <input type="text" name="cidade"
-               value="<?= isset($cidade) ? htmlspecialchars($cidade) : '' ?>" required>
+        <label class="required">Data de início</label>
+        <input type="date" name="data_inicio"
+               value="<?= isset($data_inicio) ? htmlspecialchars($data_inicio) : '' ?>" required>
       </div>
 
       <div class="form-group">
-        <label class="required">Estado</label>
-        <input type="text" name="estado"
-               value="<?= isset($estado) ? htmlspecialchars($estado) : '' ?>" required>
-      </div>
-
-      <div class="form-group">
-        <label class="required">Bairro</label>
-        <input type="text" name="bairro"
-               value="<?= isset($bairro) ? htmlspecialchars($bairro) : '' ?>" required>
-      </div>
-
-      <div class="form-group">
-        <label class="required">CEP</label>
-        <input type="text" name="cep" placeholder="xxxxx-xxx"
-               value="<?= isset($cep) ? htmlspecialchars($cep) : '' ?>" required>
+        <label class="required">Data de término</label>
+        <input type="date" name="data_fim"
+               value="<?= isset($data_fim) ? htmlspecialchars($data_fim) : '' ?>" required>
       </div>
 
       <button type="submit" class="btn-login">Confirmar reserva</button>

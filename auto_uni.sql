@@ -21,25 +21,29 @@ SET time_zone = "+00:00";
 -- Banco de dados: `auto_uni`
 --
 
-<<<<<<< HEAD
-=======
--- --------------------------------------------------------
->>>>>>> 8cb72a7cf2b44ca560ab6919d24e7239fb1b9e59
 
 --
 -- Estrutura para tabela `reservas`
 --
 
-CREATE TABLE `reservas` (
-  `id` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `id_veiculo` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `telefone` varchar(20) NOT NULL,
-  `email` varchar(120) NOT NULL,
-  `data_inicio` date NOT NULL,
-  `data_fim` date NOT NULL,
-  `data_reserva` timestamp NOT NULL DEFAULT current_timestamp()
+DROP TABLE IF EXISTS reservas;
+
+CREATE TABLE reservas (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  id_usuario INT(11) NULL,
+  id_veiculo INT(11) NULL,
+  modelo_veiculo VARCHAR(100) NULL,
+  nome VARCHAR(150) NOT NULL,
+  telefone VARCHAR(20) NOT NULL,
+  email VARCHAR(120) NOT NULL,
+  data_inicio DATE NOT NULL,
+  data_fim DATE NOT NULL,
+  data_reserva TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY id_usuario (id_usuario),
+  KEY id_veiculo (id_veiculo),
+  CONSTRAINT reservas_ibfk_1 FOREIGN KEY (id_usuario) REFERENCES usuarios (id),
+  CONSTRAINT reservas_ibfk_2 FOREIGN KEY (id_veiculo) REFERENCES veiculos (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -49,7 +53,6 @@ CREATE TABLE `reservas` (
 --
 
 CREATE TABLE `usuarios` (
-<<<<<<< HEAD
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `sobrenome` varchar(100) DEFAULT NULL,
@@ -60,17 +63,6 @@ CREATE TABLE `usuarios` (
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-=======
-  `id` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `sobrenome` varchar(100) DEFAULT NULL,
-  `idade` int(11) DEFAULT NULL,
-  `numero` varchar(20) DEFAULT NULL,
-  `telefone` varchar(20) NOT NULL,
-  `email` varchar(120) NOT NULL,
-  `senha` varchar(255) NOT NULL,
-  `criado_em` timestamp NOT NULL DEFAULT current_timestamp()
->>>>>>> 8cb72a7cf2b44ca560ab6919d24e7239fb1b9e59
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------

@@ -2,15 +2,11 @@
 session_start();
 include "conexao_banco_de_dados.php";
 
-<<<<<<< HEAD
-/* DEBUG (se quiser, pode remover depois) */
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-=======
->>>>>>> 8cb72a7cf2b44ca560ab6919d24e7239fb1b9e59
 
 $titulo_site   = 'AUTO UNI';
-$subtitulo     = 'SITE DE ALUGUEL DE VEÍCULOS PARA ESTUDANTES DA UNIPÊ';
+$subtitulo     = 'ALUGUEL DE VEÍCULOS PARA ESTUDANTES UNIPÊ';
 $min_senha     = 6;
 
 $mensagem = '';
@@ -42,14 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   if (empty($erros)) {
-<<<<<<< HEAD
-    // Criptografa a senha
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-    // Converte idade para inteiro
     $idade_int = (int)$idade;
 
-    // Usando prepared statement (mais seguro e evita erro com aspas)
     $sql = "INSERT INTO usuarios (nome, sobrenome, idade, numero, email, senha)
             VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -68,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (mysqli_stmt_execute($stmt)) {
             $mensagem = 'Conta criada com sucesso! Você já pode fazer login.
                          <br>Ir para <a href="painel_login.php">Login</a>.';
-            // Limpa os campos após sucesso
             $nome = $sobrenome = $idade = $numero = $email = '';
         } else {
             $erros[] = 'Erro ao salvar no banco de dados: ' . mysqli_stmt_error($stmt);
@@ -78,23 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $erros[] = 'Erro ao preparar a consulta: ' . mysqli_error($conn);
     }
-=======
-
-    // Criptografa a senha
-    $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
-
-    // Prepara INSERT
-    $sql = "INSERT INTO usuarios (nome, sobrenome, idade, numero, email, senha)
-        VALUES ('$nome', '$sobrenome', '$idade', '$numero', '$email', '$senha_hash')";
-
-    if (mysqli_query($conn, $sql)) {
-        $mensagem = 'Conta criada com sucesso! Você já pode fazer login.
-                     <br>Ir para <a href="painel_login.php">Login</a>.';
-    } else {
-    $erros[] = 'Erro ao salvar no banco de dados: ' . mysqli_error($conn);
-    }
-
->>>>>>> 8cb72a7cf2b44ca560ab6919d24e7239fb1b9e59
   }
 }
 ?>

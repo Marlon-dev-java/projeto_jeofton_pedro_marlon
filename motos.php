@@ -1,5 +1,5 @@
 <?php
-
+// motos.php
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
 <body>
 <section class="hero">
   <h2>AUTO UNI</h2>
-  <p>SITE DE ALUGUEL DE VEICULOS PARA ESTUDANTES DA UNIPÊ</p>
+  <p>ALUGUEL DE VEÍCULOS PARA ESTUDANTES UNIPÊ</p>
   <div class="nav-buttons">
     <div class="left-buttons">
       <a class="btn" href="index.php">Página Inicial</a>
@@ -27,28 +27,28 @@
 </section>
 <div class="catalogo">
     <div class="car-card">
-        <img src="assets/cg160.png" alt="Carro 2">
+        <img src="assets/cg160.png" alt="Honda CG 160">
         <h3>Honda CG 160</h3>
         <p>ECONÔMICA, COMPACTA E CONFORTÁVEL</p>
-        <a href="RESERVA.php" class="btn car-btn">Alugar</a>
+        <a href="reserva.php?id_veiculo=5" class="btn car-btn">Alugar</a>
     </div>
-        <div class="car-card">
-        <img src="assets/xre300.png" alt="Carro 2">
+    <div class="car-card">
+        <img src="assets/xre300.png" alt="Honda XRE 300">
         <h3>Honda XRE 300</h3>
         <p>ECONÔMICA, COMPACTA E CONFORTÁVEL</p>
-        <a href="RESERVA.php" class="btn car-btn">Alugar</a>
+        <a href="reserva.php?id_veiculo=6" class="btn car-btn">Alugar</a>
     </div>
-        <div class="car-card">
-        <img src="assets/lander.png" alt="Carro 2">
+    <div class="car-card">
+        <img src="assets/lander.png" alt="Yamaha Lander 250">
         <h3>Yamaha LANDER 250</h3>
         <p>ECONÔMICA, COMPACTA E CONFORTÁVEL</p>
-        <a href="RESERVA.php" class="btn car-btn">Alugar</a>
+        <a href="reserva.php?id_veiculo=7" class="btn car-btn">Alugar</a>
     </div>
-        <div class="car-card">
-        <img src="assets/gs.png" alt="Carro 2">
+    <div class="car-card">
+        <img src="assets/gs.png" alt="BMW GS 310">
         <h3>BMW GS 310</h3>
         <p>ECONÔMICA, VELOZ E CONFORTÁVEL</p>
-        <a href="RESERVA.php" class="btn car-btn">Alugar</a>
+        <a href="reserva.php?id_veiculo=8" class="btn car-btn">Alugar</a>
     </div>
 </div>
 <footer class="footer">

@@ -14,7 +14,7 @@ body {
 .hero {
   text-align: center;
   padding: 0px 0 30px 0; 
-  background-color: #272727;
+  background-color: #004f0d;
   color: #ffffff;
   margin-bottom: 30px;
 }
@@ -47,7 +47,7 @@ body {
 }
 
 .btn {
-  background-color: #272727;
+  background-color: #004f0d;
   color: white;
   padding: 8px 16px;
   border-radius: 5px;
@@ -181,7 +181,7 @@ input[type="password"] {
 }
 
 .footer {
-  background-color: #272727;
+  background-color: #004f0d;
   color: #ffffff;
   text-align: center;
   padding: 40px 20px;
@@ -210,7 +210,7 @@ input[type="password"] {
 }
 
 .footer-buttons .btn {
-  background-color: #2d2d2d;
+  background-color: #004f0d;
   color: white;
   padding: 10px 18px;
   margin: 0 8px;

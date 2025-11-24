@@ -1,5 +1,5 @@
 <?php
-
+// carros.php
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
 <body>
 <section class="hero">
   <h2>AUTO UNI</h2>
-  <p>SITE DE ALUGUEL DE VEICULOS PARA ESTUDANTES DA UNIPÊ</p>
+  <p>ALUGUEL DE VEÍCULOS PARA ESTUDANTES UNIPÊ</p>
   <div class="nav-buttons">
     <div class="left-buttons">
       <a class="btn" href="index.php">Página Inicial</a>
@@ -27,36 +27,36 @@
 </section>
 <div class="catalogo">
     <div class="car-card">
-        <img src="assets/polotrack.png" alt="Carro 1">
+        <img src="assets/polotrack.png" alt="Volkswagen Polo Track">
         <h3>Volkswagen Polo Track 1.0</h3>
         <p>ECONÔMICO, CONFORTÁVEL E SEGURO!</p>
-        <h3>R$ 102,83 - POR DIA</h3>
+        <h3>R$ 102,83 - DIÁRIA</h3>
         <br>
-        <a href="reserva.php" class="btn car-btn">Alugar</a>
-    </div>
-        <div class="car-card">
-        <img src="assets/onixlt.png" alt="Carro 2">
-        <h3>Chevrolet Ônix 1.0</h3>
-        <p>ECONÔMICO, COMPACTO E ESPAÇOSO!</p>
-        <h3>R$ 122,33 - POR DIA</h3>
-        <br>
-        <a href="reserva.php" class="btn car-btn">Alugar</a>
-    </div>
-        <div class="car-card">
-        <img src="assets/onixplus.png" alt="Carro 2">
-        <h3>Chevrolet Ônix 1.0</h3>
-        <p>ECONÔMICO, COMPACTO E ESPAÇOSO!</p>
-        <h3>R$ 158,90 - POR DIA</h3>
-        <br>
-        <a href="reserva.php" class="btn car-btn">Alugar</a>
+        <a href="reserva.php?id_veiculo=1" class="btn car-btn">Alugar</a>
     </div>
     <div class="car-card">
-        <img src="assets/hb20s.png" alt="Carro 2">
+        <img src="assets/onixlt.png" alt="Chevrolet Onix LT">
+        <h3>Chevrolet Ônix 1.0</h3>
+        <p>ECONÔMICO, COMPACTO E ESPAÇOSO!</p>
+        <h3>R$ 122,33 - DIÁRIA</h3>
+        <br>
+        <a href="reserva.php?id_veiculo=2" class="btn car-btn">Alugar</a>
+    </div>
+    <div class="car-card">
+        <img src="assets/onixplus.png" alt="Chevrolet Onix Plus">
+        <h3>Chevrolet Ônix Plus 1.0</h3>
+        <p>ECONÔMICO, COMPACTO E ESPAÇOSO!</p>
+        <h3>R$ 158,90 - DIÁRIA</h3>
+        <br>
+        <a href="reserva.php?id_veiculo=3" class="btn car-btn">Alugar</a>
+    </div>
+    <div class="car-card">
+        <img src="assets/hb20s.png" alt="Hyundai HB20S">
         <h3>Hyundai HB20S</h3>
         <p>ECONÔMICO, COMPACTO E ESPAÇOSO!</p>
-        <h3>R$ 145,55 - POR DIA</h3>
+        <h3>R$ 145,55 - DIÁRIA</h3>
         <br>
-        <a href="reserva.php" class="btn car-btn">Alugar</a>
+        <a href="reserva.php?id_veiculo=4" class="btn car-btn">Alugar</a>
     </div>
 </div>
 <footer class="footer">

@@ -1,13 +1,9 @@
 <?php
 session_start();
 include "conexao_banco_de_dados.php";
-<<<<<<< HEAD
 
-// OPCIONAL: ligar modo debug enquanto você está testando
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-=======
->>>>>>> 8cb72a7cf2b44ca560ab6919d24e7239fb1b9e59
 
 $mensagem = '';
 
@@ -15,11 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $senha = trim($_POST['password'] ?? '');
 
-<<<<<<< HEAD
     if ($email === '' || $senha === '') {
         $mensagem = 'Preencha e-mail e senha.';
     } else {
-        // Busca o usuário apenas pelo e-mail (AGORA usando prepared statement)
         $sql = "SELECT id, nome, email, senha FROM usuarios WHERE email = ? LIMIT 1";
         $stmt = mysqli_prepare($conn, $sql);
 
@@ -31,16 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($resultado && mysqli_num_rows($resultado) > 0) {
                 $usuario = mysqli_fetch_assoc($resultado);
 
-                // Verifica a senha digitada com o hash salvo no banco
                 if (password_verify($senha, $usuario['senha'])) {
-                    // Login OK → salva dados na sessão
                     $_SESSION['usuario']       = $usuario['nome'];
                     $_SESSION['usuario_id']    = $usuario['id'];
                     $_SESSION['usuario_email'] = $usuario['email'];
-
-                    // Você pode redirecionar direto pro index ou painel:
-                    // header("Location: index.php");
-                    // exit;
 
                     $mensagem = 'Login realizado com sucesso! <br> Clique <a href="index.php">Aqui</a> para continuar.';
                 } else {
@@ -54,27 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $mensagem = 'Erro ao consultar o banco de dados: ' . mysqli_error($conn);
         }
-=======
-if ($email !== '' && $senha !== '') {
-
-    $sql = "SELECT * FROM usuarios WHERE email = '$email' LIMIT 1";
-    $resultado = mysqli_query($conn, $sql);
-
-    if ($resultado && mysqli_num_rows($resultado) > 0) {
-        $usuario = mysqli_fetch_assoc($resultado);
-
-        // Verifica senha
-        if (password_verify($senha, $usuario['senha'])) {
-            $_SESSION['usuario'] = $usuario['nome']; // pode guardar mais dados se quiser
-            $mensagem = 'Login realizado com sucesso! <br> Clique <a href="index.php">Aqui</a> para continuar.';
-        } else {
-            $mensagem = 'Senha incorreta.';
-        }
-    } else {
-        $mensagem = 'E-mail não encontrado.';
->>>>>>> 8cb72a7cf2b44ca560ab6919d24e7239fb1b9e59
     }
-  }
 }
 ?>
 <!DOCTYPE html>
@@ -89,7 +57,7 @@ if ($email !== '' && $senha !== '') {
 
 <section class="hero">
   <h2>AUTO UNI</h2>
-  <p>SITE SIMPLES E PRÁTICO PARA ALUGUEL DE VEÍCULOS</p>
+  <p>ALUGUEL DE VEÍCULOS PARA ESTUDANTES UNIPÊ</p>
   <div class="nav-buttons">
     <div class="left-buttons">
       <a class="btn" href="index.php">Página Inicial</a>

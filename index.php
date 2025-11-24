@@ -13,7 +13,7 @@
 <body>
 <section class="hero">
   <h2>AUTO UNI</h2>
-  <p>SITE DE ALUGUEL DE VEICULOS PARA ESTUDANTES DA UNIPÊ</p>
+  <p>ALUGUEL DE VEÍCULOS PARA ESTUDANTES UNIPÊ</p>
   <div class="nav-buttons">
     <div class="left-buttons">
       <a class="btn" href="index.php">Página Inicial</a>
