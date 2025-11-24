@@ -36,8 +36,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   if (empty($erros)) {
-    $mensagem = 'Conta criada com sucesso! Você já pode fazer login. 
-                 <br>Ir para <a href="painel_login.php">Login</a>.';
+
+    // Criptografa a senha
+    $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+
+    // Prepara INSERT
+    $sql = "INSERT INTO usuarios (nome, sobrenome, idade, numero, email, senha)
+        VALUES ('$nome', '$sobrenome', '$idade', '$numero', '$email', '$senha_hash')";
+
+    if (mysqli_query($conn, $sql)) {
+        $mensagem = 'Conta criada com sucesso! Você já pode fazer login.
+                     <br>Ir para <a href="painel_login.php">Login</a>.';
+    } else {
+    $erros[] = 'Erro ao salvar no banco de dados: ' . mysqli_error($conn);
+    }
+
   }
 }
 ?>

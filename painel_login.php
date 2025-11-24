@@ -8,11 +8,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $senha = trim($_POST['password'] ?? '');
 
-    if ($email !== '' && $senha !== '') {
-        $mensagem = 'Login realizado com sucesso! <br> Clique <a href="index.php">Aqui</a> para continuar.';
+if ($email !== '' && $senha !== '') {
+
+    $sql = "SELECT * FROM usuarios WHERE email = '$email' LIMIT 1";
+    $resultado = mysqli_query($conn, $sql);
+
+    if ($resultado && mysqli_num_rows($resultado) > 0) {
+        $usuario = mysqli_fetch_assoc($resultado);
+
+        // Verifica senha
+        if (password_verify($senha, $usuario['senha'])) {
+            $_SESSION['usuario'] = $usuario['nome']; // pode guardar mais dados se quiser
+            $mensagem = 'Login realizado com sucesso! <br> Clique <a href="index.php">Aqui</a> para continuar.';
+        } else {
+            $mensagem = 'Senha incorreta.';
+        }
     } else {
-        $mensagem = 'Preencha todos os campos.';
+        $mensagem = 'E-mail não encontrado.';
     }
+  }
 }
 ?>
 <!DOCTYPE html>
