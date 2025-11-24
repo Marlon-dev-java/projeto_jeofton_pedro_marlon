@@ -1,5 +1,10 @@
 <?php
 session_start();
+include "conexao_banco_de_dados.php";
+
+/* DEBUG (se quiser, pode remover depois) */
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 $titulo_site   = 'AUTO UNI';
 $subtitulo     = 'SITE DE ALUGUEL DE VEÍCULOS PARA ESTUDANTES DA UNIPÊ';
@@ -34,8 +39,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   if (empty($erros)) {
-    $mensagem = 'Conta criada com sucesso! Você já pode fazer login. 
-                 <br>Ir para <a href="painel_login.php">Login</a>.';
+    // Criptografa a senha
+    $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+
+    // Converte idade para inteiro
+    $idade_int = (int)$idade;
+
+    // Usando prepared statement (mais seguro e evita erro com aspas)
+    $sql = "INSERT INTO usuarios (nome, sobrenome, idade, numero, email, senha)
+            VALUES (?, ?, ?, ?, ?, ?)";
+
+    $stmt = mysqli_prepare($conn, $sql);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "ssisss",
+            $nome,
+            $sobrenome,
+            $idade_int,
+            $numero,
+            $email,
+            $senha_hash
+        );
+
+        if (mysqli_stmt_execute($stmt)) {
+            $mensagem = 'Conta criada com sucesso! Você já pode fazer login.
+                         <br>Ir para <a href="painel_login.php">Login</a>.';
+            // Limpa os campos após sucesso
+            $nome = $sobrenome = $idade = $numero = $email = '';
+        } else {
+            $erros[] = 'Erro ao salvar no banco de dados: ' . mysqli_stmt_error($stmt);
+        }
+
+        mysqli_stmt_close($stmt);
+    } else {
+        $erros[] = 'Erro ao preparar a consulta: ' . mysqli_error($conn);
+    }
   }
 }
 ?>
@@ -128,6 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
   </div>
 </section>
+
 <footer class="footer">
   <div class="footer-content">
     <h2>Informações Adicionais</h2>

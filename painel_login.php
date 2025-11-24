@@ -1,5 +1,10 @@
 <?php
 session_start();
+include "conexao_banco_de_dados.php";
+
+// OPCIONAL: ligar modo debug enquanto você está testando
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 $mensagem = '';
 
@@ -7,10 +12,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $senha = trim($_POST['password'] ?? '');
 
-    if ($email !== '' && $senha !== '') {
-        $mensagem = 'Login realizado com sucesso! <br> Clique <a href="index.php">Aqui</a> para continuar.';
+    if ($email === '' || $senha === '') {
+        $mensagem = 'Preencha e-mail e senha.';
     } else {
-        $mensagem = 'Preencha todos os campos.';
+        // Busca o usuário apenas pelo e-mail (AGORA usando prepared statement)
+        $sql = "SELECT id, nome, email, senha FROM usuarios WHERE email = ? LIMIT 1";
+        $stmt = mysqli_prepare($conn, $sql);
+
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "s", $email);
+            mysqli_stmt_execute($stmt);
+            $resultado = mysqli_stmt_get_result($stmt);
+
+            if ($resultado && mysqli_num_rows($resultado) > 0) {
+                $usuario = mysqli_fetch_assoc($resultado);
+
+                // Verifica a senha digitada com o hash salvo no banco
+                if (password_verify($senha, $usuario['senha'])) {
+                    // Login OK → salva dados na sessão
+                    $_SESSION['usuario']       = $usuario['nome'];
+                    $_SESSION['usuario_id']    = $usuario['id'];
+                    $_SESSION['usuario_email'] = $usuario['email'];
+
+                    // Você pode redirecionar direto pro index ou painel:
+                    // header("Location: index.php");
+                    // exit;
+
+                    $mensagem = 'Login realizado com sucesso! <br> Clique <a href="index.php">Aqui</a> para continuar.';
+                } else {
+                    $mensagem = 'Senha incorreta.';
+                }
+            } else {
+                $mensagem = 'E-mail não encontrado.';
+            }
+
+            mysqli_stmt_close($stmt);
+        } else {
+            $mensagem = 'Erro ao consultar o banco de dados: ' . mysqli_error($conn);
+        }
     }
 }
 ?>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "conexao_banco_de_dados.php";
 
 $titulo_site   = 'AUTO UNI';
 $subtitulo     = 'RESERVA DE VEÍCULOS PARA ESTUDANTES DA UNIPÊ';
