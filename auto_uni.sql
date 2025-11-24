@@ -21,6 +21,10 @@ SET time_zone = "+00:00";
 -- Banco de dados: `auto_uni`
 --
 
+<<<<<<< HEAD
+=======
+-- --------------------------------------------------------
+>>>>>>> 8cb72a7cf2b44ca560ab6919d24e7239fb1b9e59
 
 --
 -- Estrutura para tabela `reservas`
@@ -45,6 +49,7 @@ CREATE TABLE `reservas` (
 --
 
 CREATE TABLE `usuarios` (
+<<<<<<< HEAD
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `sobrenome` varchar(100) DEFAULT NULL,
@@ -55,6 +60,17 @@ CREATE TABLE `usuarios` (
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
+=======
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `sobrenome` varchar(100) DEFAULT NULL,
+  `idade` int(11) DEFAULT NULL,
+  `numero` varchar(20) DEFAULT NULL,
+  `telefone` varchar(20) NOT NULL,
+  `email` varchar(120) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `criado_em` timestamp NOT NULL DEFAULT current_timestamp()
+>>>>>>> 8cb72a7cf2b44ca560ab6919d24e7239fb1b9e59
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
