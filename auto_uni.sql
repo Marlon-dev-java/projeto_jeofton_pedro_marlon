@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24/11/2025 às 16:18
+-- Tempo de geração: 24/11/2025 às 17:06
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,6 +20,42 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `auto_uni`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `reservas`
+--
+
+CREATE TABLE `reservas` (
+  `id` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_veiculo` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `telefone` varchar(20) NOT NULL,
+  `email` varchar(120) NOT NULL,
+  `data_inicio` date NOT NULL,
+  `data_fim` date NOT NULL,
+  `data_reserva` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `sobrenome` varchar(100) DEFAULT NULL,
+  `idade` int(11) DEFAULT NULL,
+  `numero` varchar(20) DEFAULT NULL,
+  `telefone` varchar(20) NOT NULL,
+  `email` varchar(120) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `criado_em` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -54,6 +90,21 @@ INSERT INTO `veiculos` (`id`, `tipo`, `modelo`, `preco_diaria`, `imagem`) VALUES
 --
 
 --
+-- Índices de tabela `reservas`
+--
+ALTER TABLE `reservas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `id_veiculo` (`id_veiculo`);
+
+--
+-- Índices de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- Índices de tabela `veiculos`
 --
 ALTER TABLE `veiculos`
@@ -64,10 +115,33 @@ ALTER TABLE `veiculos`
 --
 
 --
+-- AUTO_INCREMENT de tabela `reservas`
+--
+ALTER TABLE `reservas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `veiculos`
 --
 ALTER TABLE `veiculos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `reservas`
+--
+ALTER TABLE `reservas`
+  ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
+  ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`id_veiculo`) REFERENCES `veiculos` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
